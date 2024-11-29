@@ -1,0 +1,16 @@
+﻿slam.mapping
+============
+
+.. automodule:: slam.mapping
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      disk_conformal_mapping
+      inverse_stereo_projection
+      moebius_transformation
+      spherical_mapping
+      stereo_projection
+   

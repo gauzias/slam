@@ -1,0 +1,14 @@
+﻿slam.geodesics
+==============
+
+.. automodule:: slam.geodesics
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      compute_gdist
+      local_gdist_matrix
+      shortest_path
+   

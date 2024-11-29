@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>example of curvature estimation in slam &#8212; slam 0.0.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=45361654" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="../_static/documentation_options.js?v=282f96c0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          slam</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/brain-slam/slam">Github</a></li>
+                <li><a href="../faq.html">FAQ</a></li>
+                <li><a href="index.html">Examples</a></li>
+                <li><a href="../api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">example of curvature estimation in slam</a><ul>
+<li><a class="reference internal" href="#visualization-using-external-tools">VISUALIZATION USING EXTERNAL TOOLS</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/auto_examples/example_curvature.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">example of curvature estimation in slam</a><ul>
+<li><a class="reference internal" href="#visualization-using-external-tools">VISUALIZATION USING EXTERNAL TOOLS</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../_sources/auto_examples/example_curvature.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-example-curvature-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="example-of-curvature-estimation-in-slam">
+<span id="example-curvature"></span><span id="sphx-glr-auto-examples-example-curvature-py"></span><h1>example of curvature estimation in slam<a class="headerlink" href="#example-of-curvature-estimation-in-slam" title="Link to this heading">¶</a></h1>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Guillaume Auzias &lt;guillaume.auzias@univ-amu.fr&gt;</span>
+<span class="c1">#          Julien Barrès &lt;julien.barres@etu.univ-amu.fr&gt;</span>
+
+<span class="c1"># License: MIT</span>
+<span class="c1"># sphinx_gallery_thumbnail_number = 2</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>NOTE: there is no visualization tool in slam, but we provide at the</dt><dd><p>end of this script exemplare code to do the visualization with
+an external solution</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># importation of slam modules</span>
+<span class="kn">import</span> <span class="nn">slam.utils</span> <span class="k">as</span> <span class="nn">ut</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">slam.generate_parametric_surfaces</span> <span class="k">as</span> <span class="nn">sgps</span>
+<span class="kn">import</span> <span class="nn">slam.io</span> <span class="k">as</span> <span class="nn">sio</span>
+<span class="kn">import</span> <span class="nn">slam.curvature</span> <span class="k">as</span> <span class="nn">scurv</span>
+</pre></div>
+</div>
+<p>loading an examplar mesh</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh_file</span></a> <span class="o">=</span> <span class="s2">&quot;../examples/data/example_mesh.gii&quot;</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">load_mesh</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mesh_file</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Comptue estimations of principal curvatures</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">PrincipalCurvatures</span><span class="p">,</span> <span class="n">PrincipalDir1</span><span class="p">,</span> <span class="n">PrincipalDir2</span> \
+    <span class="o">=</span> <span class="n">scurv</span><span class="o">.</span><span class="n">curvatures_and_derivatives</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Calculating vertex normals .... Please wait
+Finished calculating vertex normals
+Calculating curvature tensors ... Please wait
+Finished Calculating curvature tensors
+Calculating Principal Components ... Please wait
+Finished Calculating principal components
+</pre></div>
+</div>
+<p>Comptue Gauss curvature from principal curvatures</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">gaussian_curv</span> <span class="o">=</span> <span class="n">PrincipalCurvatures</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">PrincipalCurvatures</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+<p>Comptue mean curvature from principal curvatures</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mean_curv</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">PrincipalCurvatures</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">PrincipalCurvatures</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+<p>Decomposition of the curvatures into ShapeIndex and Curvedness
+Based on ‘Surface shape and curvature scales</p>
+<blockquote>
+<div><p>Jan JKoenderink &amp; Andrea Jvan Doorn’</p>
+</div></blockquote>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">shapeIndex</span><span class="p">,</span> <span class="n">curvedness</span> <span class="o">=</span> <span class="n">scurv</span><span class="o">.</span><span class="n">decompose_curvature</span><span class="p">(</span><span class="n">PrincipalCurvatures</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Estimation error on the principal curvature length</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">quadric</span> <span class="o">=</span> <span class="n">sgps</span><span class="o">.</span><span class="n">generate_quadric</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a><span class="p">,</span>
+    <span class="n">nstep</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="n">ax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">ay</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">random_sampling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ratio</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_distribution_type</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
+    <span class="n">equilateral</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Estimated computation of the Principal curvature, K_gauss, K_mean</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">p_curv</span><span class="p">,</span> <span class="n">d1_estim</span><span class="p">,</span> <span class="n">d2_estim</span> <span class="o">=</span> <span class="n">scurv</span><span class="o">.</span><span class="n">curvatures_and_derivatives</span><span class="p">(</span><span class="n">quadric</span><span class="p">)</span>
+
+<span class="n">k1_estim</span><span class="p">,</span> <span class="n">k2_estim</span> <span class="o">=</span> <span class="n">p_curv</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">p_curv</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="n">k_gauss_estim</span> <span class="o">=</span> <span class="n">k1_estim</span> <span class="o">*</span> <span class="n">k2_estim</span>
+
+<span class="n">k_mean_estim</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1_estim</span> <span class="o">+</span> <span class="n">k2_estim</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Calculating vertex normals .... Please wait
+Finished calculating vertex normals
+Calculating curvature tensors ... Please wait
+Finished Calculating curvature tensors
+Calculating Principal Components ... Please wait
+Finished Calculating principal components
+</pre></div>
+</div>
+<p>Analytical computation of the curvatures</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">k_mean_analytic</span> <span class="o">=</span> <span class="n">sgps</span><span class="o">.</span><span class="n">quadric_curv_mean</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a><span class="p">)(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">quadric</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">quadric</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">)</span>
+
+<span class="n">k_gauss_analytic</span> <span class="o">=</span> <span class="n">sgps</span><span class="o">.</span><span class="n">quadric_curv_gauss</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a><span class="p">)(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">quadric</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">quadric</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="p">)</span>
+
+<span class="n">k1_analytic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">k_mean_analytic</span><span class="p">)))</span>
+<span class="n">k2_analytic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">k_mean_analytic</span><span class="p">)))</span>
+
+<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k_mean_analytic</span><span class="p">)):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k_mean_analytic</span><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">],</span> <span class="n">k_gauss_analytic</span><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]))</span>
+    <span class="n">k1_analytic</span><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">k2_analytic</span><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Error computation</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">k_mean_relative_change</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">k_mean_analytic</span> <span class="o">-</span> <span class="n">k_mean_estim</span><span class="p">)</span> <span class="o">/</span> <span class="n">k_mean_analytic</span><span class="p">)</span>
+<span class="n">k_mean_absolute_change</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">k_mean_analytic</span> <span class="o">-</span> <span class="n">k_mean_estim</span><span class="p">))</span>
+
+<span class="n">k1_relative_change</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">k1_analytic</span> <span class="o">-</span> <span class="n">k1_estim</span><span class="p">)</span> <span class="o">/</span> <span class="n">k1_analytic</span><span class="p">)</span>
+<span class="n">k1_absolute_change</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">k1_analytic</span> <span class="o">-</span> <span class="n">k1_estim</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Estimation error on the curvature directions
+commented because there is a bug:
+ValueError: shapes (3,2) and (3,2) not aligned: 2 (dim 1) != 3 (dim 0)
+actually, vec1.shape=(3,) while vec2.shape=(3,2)</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">quadric</span> <span class="o">=</span> <span class="n">sgps</span><span class="o">.</span><span class="n">generate_quadric</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a><span class="p">,</span>
+    <span class="n">nstep</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="n">ax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">ay</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">random_sampling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ratio</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_distribution_type</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
+    <span class="n">equilateral</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Estimated computation of the Principal curvature, Direction1, Direction2</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">p_curv_estim</span><span class="p">,</span> <span class="n">d1_estim</span><span class="p">,</span> <span class="n">d2_estim</span> <span class="o">=</span> <span class="n">scurv</span><span class="o">.</span><span class="n">curvatures_and_derivatives</span><span class="p">(</span><span class="n">quadric</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Calculating vertex normals .... Please wait
+Finished calculating vertex normals
+Calculating curvature tensors ... Please wait
+Finished Calculating curvature tensors
+Calculating Principal Components ... Please wait
+Finished Calculating principal components
+</pre></div>
+</div>
+<p>Analytical computation of the directions</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">analytical_directions</span> <span class="o">=</span> <span class="n">sgps</span><span class="o">.</span><span class="n">compute_all_principal_directions_3D</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">K</span></a><span class="p">,</span> <span class="n">quadric</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+
+<span class="n">estimated_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">analytical_directions</span><span class="o">.</span><span class="n">shape</span></a><span class="p">)</span>
+<span class="n">estimated_directions</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">d1_estim</span>
+<span class="n">estimated_directions</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">d2_estim</span>
+
+<span class="n">angular_error_0</span><span class="p">,</span> <span class="n">dotprods</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">compare_analytic_estimated_directions</span><span class="p">(</span>
+    <span class="n">analytical_directions</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">estimated_directions</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">angular_error_0</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">angular_error_0</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a>
+
+<span class="n">angular_error_1</span><span class="p">,</span> <span class="n">dotprods</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">compare_analytic_estimated_directions</span><span class="p">(</span>
+    <span class="n">analytical_directions</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">estimated_directions</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">angular_error_1</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">angular_error_1</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a>
+</pre></div>
+</div>
+<section id="visualization-using-external-tools">
+<h2>VISUALIZATION USING EXTERNAL TOOLS<a class="headerlink" href="#visualization-using-external-tools" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>import visbrain # visu using visbrain
+Plot mean curvature
+visb_sc = splt.visbrain_plot(</p>
+<blockquote>
+<div><p>mesh=mesh,
+tex=mean_curv,
+caption=”mean curvature”,
+cblabel=”mean curvature”</p>
+</div></blockquote>
+<p>)
+visb_sc.preview()</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>mesh=mesh,
+tex=gaussian_curv,
+caption=”Gaussian curvature”,
+cblabel=”Gaussian curvature”,
+cmap=”hot”,</p>
+</div></blockquote>
+<p>)
+visb_sc.preview()</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>mesh=mesh,
+tex=shapeIndex,
+caption=”ShapeIndex”,
+cblabel=”ShapeIndex”,
+cmap=”coolwarm”,</p>
+</div></blockquote>
+<p>)
+visb_sc.preview()</p>
+<dl class="simple">
+<dt>visb_sc = splt.visbrain_plot(</dt><dd><p>mesh=mesh,
+tex=curvedness,
+caption=”Curvedness”,
+cblabel=”Curvedness”,
+cmap=”hot”</p>
+</dd>
+</dl>
+<p>)
+visb_sc.preview()</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>mesh=quadric,
+tex=k_mean_absolute_change,
+caption=”K_mean absolute error”,
+cblabel=”K_mean absolute error”,</p>
+</div></blockquote>
+<p>)
+visb_sc.preview()
+###############################################################################
+# Error plot
+visb_sc = splt.visbrain_plot(</p>
+<blockquote>
+<div><p>mesh=quadric,
+tex=angular_error_0,
+caption=”Angular error 0”,
+cblabel=”Angular error 0”,</p>
+</div></blockquote>
+<p>)
+visb_sc.preview()</p>
+<dl class="simple">
+<dt>visb_sc = splt.visbrain_plot(</dt><dd><p>mesh=quadric,
+tex=angular_error_1,
+caption=”Angular error 1”,
+cblabel=”Angular error 1”,</p>
+</dd>
+</dl>
+<p>)
+visb_sc.preview()</p>
+</div></blockquote>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.652 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-example-curvature-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/80f000087ba0905cd93e45d02ac3fccd/example_curvature.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">example_curvature.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/6318ffd88bf78de33d2b7a26367c6bab/example_curvature.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">example_curvature.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9dbc9bbd3f692b2367e45aa8bf40a803/example_curvature.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">example_curvature.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2024, slam Developers. Last updated on 2024-11-29.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.4.7.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

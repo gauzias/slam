@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>slam.curvature &#8212; slam 0.0.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=45361654" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <script src="_static/documentation_options.js?v=282f96c0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          slam</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/brain-slam/slam">Github</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="auto_examples/index.html">Examples</a></li>
+                <li><a href="api.html">API</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">slam.curvature</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/slam.curvature.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">slam.curvature</a></li>
+</ul>
+
+<div id="sourcelink">
+  <a href="_sources/slam.curvature.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <section id="module-slam.curvature">
+<span id="slam-curvature"></span><h1>slam.curvature<a class="headerlink" href="#module-slam.curvature" title="Link to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calcvertex_normals</span></code>(FV, N)</p></td>
+<td><p>CalcVertexNormals calculates the normals and voronoi areas at each vertex INPUT: FV - triangle mesh in face vertex structure N - face normals OUTPUT - VertexNormals - [Nv X 3] matrix of normals at each vertex Avertex - [NvX1] voronoi area at each vertex Acorner - [NfX3] slice of the voronoi area at each face corner</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_curvature</span></code>(FV, VertexNormals, ...)</p></td>
+<td><p>CalcFaceCurvature recives a list of vertices and faces in FV structure and the normal at each vertex and calculates the second fundemental matrix and the curvature using least squares :param FV: face-vertex data structure containing a list of vertices and a list of faces :param VertexNormals: n*3 matrix ( n = number of vertices ) containing the normal at each vertex :param FaceNormals: m*3 matrix ( m = number of faces ) containing the normal of each face :param Avertex: :param Acorner: :param up: :param vp: :return: FaceSFM - an m*1 cell matrix second fundemental VertexSFM - an n*w cell matrix second fundementel wfp - corner voronoi weights</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">curvature_fit</span></code>(mesh[, tol, neighbour_size])</p></td>
+<td><p>Computation of the two principal curvatures based on: Petitjean, A survey of methods for recovering quadrics in triangle meshes, ACM Computing Surveys, 2002 :param mesh: :param tol: :param neighbour_size: :return:</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">curvatures_and_derivatives</span></code>(mesh)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">curvedness_shapeIndex</span></code>(mesh)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">decompose_curvature</span></code>(in_curv)</p></td>
+<td><p>Decompose the principal curvatures of a mesh in ShapeIndex and curvedness Implementation based on ' Surface shape and curvature scales   Jan JKoenderink &amp; Andrea Jvan Doorn   Image and Vision Computing   Volume 10, Issue 8, October 1992, Pages 557-564 '</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">determine_local_basis</span></code>(normal, tol)</p></td>
+<td><p>Compute an orthonormal basis of a 2d plane defined by its normal.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">norm</span></code>(vector)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">principal_curvatures</span></code>(FV, VertexSFM, up, vp)</p></td>
+<td><p>Calculates the principal curvatures and prncipal directions :param FV: triangular mesh :param VertexSFM: second fundemental matrix for each vertex :param up: vertex local coordinate frame :param vp: vertex local coordinate frame :return: PrincipalCurvature : Matrix containing pricipale curvatures ( dim = 2 * Number of vertices ) PrincipalDi1 , PrincipalDi2 : First and second principal directions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">project_curvature_tensor</span></code>(uf, vf, nf, old_ku, ...)</p></td>
+<td><p>performs a projection of the tensor variables to the vertex coordinate system :param uf:face coordinates system :param vf:face coordinates system :param nf:face normal :param old_ku:face curvature tensor variables :param old_kuv:face curvature tensor variables :param old_kv:face curvature tensor variables :param up:vertex cordinate system :param vp:vertex cordinate system :return: new_ku,new_kuv,new_kv : vertex curvature tensor coordinates The tensor : [[new_ku, new_kuv], [new_kuv, new_kv]]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate_coordinate_system</span></code>(up, vp, nf)</p></td>
+<td><p>RotateCoordinateSystem performs the rotation of the vectors up and vp to the plane defined by nf as its normal vector :param up: vectors to be rotated (vertex coordinate system) :param vp: vectors to be rotated (vertex coordinate system) :param nf: face normal :return: r_new_u,r_new_v : new rotated vectors</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2024, slam Developers. Last updated on 2024-11-29.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.4.7.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
